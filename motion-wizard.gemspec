@@ -1,15 +1,14 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'motion/wizard/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "motion-wizard"
-  spec.version       = Motion::Wizard::VERSION
+  spec.version       = "0.1"
   spec.authors       = ["Ignacio Piantanida"]
   spec.email         = ["ijpiantanida@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = "An small library to create wizard like views"
+  spec.summary       = "An small library to create wizard like views"
   spec.homepage      = ""
   spec.license       = "MIT"
 
