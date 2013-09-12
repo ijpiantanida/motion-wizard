@@ -38,6 +38,7 @@ module MotionWizard
     end
 
     def index_item_resized_at(index_item, i)
+      index_item.label_wrapper.size = index_item.size
       index_item.label.size = index_item.size
     end
   end

@@ -1,16 +1,28 @@
 module MotionWizard
   class IndexItem < UIView
-    attr_reader :label
+    attr_reader :label, :label_wrapper
 
     def init
       super
-      @label = UILabel.alloc.init
-      @label.textAlignment = NSTextAlignmentCenter
-      @label.origin = [0,0]
-      addSubview(@label)
+      create_label
+      create_label_wrapper
+      @label_wrapper.addSubview(@label)
+      addSubview(@label_wrapper)
 
       initialize_callbacks
       self
+    end
+
+    def create_label
+      @label               = UILabel.alloc.init
+      @label.textAlignment = NSTextAlignmentCenter
+      @label.origin        = [0, 0]
+    end
+
+    def create_label_wrapper
+      @label_wrapper                 = UIView.alloc.init
+      @label_wrapper.origin          = [0, 0]
+      @label_wrapper.backgroundColor = UIColor.clearColor
     end
 
     def initialize_callbacks
