@@ -11,9 +11,7 @@ module MotionWizard
 
     def create_index_items
       @number_of_steps.times do |i|
-        index_item = @wizard_controller.create_index_item_at(i)
-        addSubview(index_item)
-        @index_items << index_item
+        @index_items << @wizard_controller.create_index_item_at(i)
       end
     end
 
@@ -30,7 +28,7 @@ module MotionWizard
 
     def resize_indexes
       return unless @number_of_steps
-      index_width = self.frame.size.width / @number_of_steps
+      index_width = (self.frame.size.width).to_f / @number_of_steps
       @index_items.each_with_index do |index_item, i|
         index_item.frame = [[index_width*i, 0], [index_width, self.size.height]]
         index_item_resized_at(index_item, i)
@@ -40,6 +38,8 @@ module MotionWizard
     def index_item_resized_at(index_item, i)
       index_item.label_wrapper.size = index_item.size
       index_item.label.size = index_item.size
+      addSubview(index_item)
+      @wizard_controller.index_item_added_to_view_at(index_item, i)
     end
   end
 end

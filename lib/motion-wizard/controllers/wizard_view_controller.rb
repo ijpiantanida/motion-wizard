@@ -94,5 +94,7 @@ module MotionWizard
       index_item.label.text = "%02d" % (index+1)
       index_item
     end
+
+    def index_item_added_to_view_at(index_item, index);end
   end
 end
