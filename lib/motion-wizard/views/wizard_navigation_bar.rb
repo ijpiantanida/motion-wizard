@@ -1,45 +1,26 @@
 module MotionWizard
   class WizardNavigationBar < UIView
-    class IndexItem < UIView
-      attr_reader :label
-      def init
-        super
-        @label = UILabel.alloc.init
-        @label.origin = [0,0]
-        addSubview(@label)
-        self
-      end
-    end
-
-    def initWitNumberOfSteps(number_of_steps)
+    def init_with_number_of_steps(number_of_steps, wizard_controller)
       self.init
       @number_of_steps = number_of_steps
       @index_items = []
-      initialize_index_items
+      @wizard_controller = WeakRef.new(wizard_controller)
+      create_index_items
       self
     end
 
-    def initialize_index_items
+    def create_index_items
       @number_of_steps.times do |i|
-        index_item = IndexItem.alloc.init
+        index_item = @wizard_controller.create_index_item_at(i)
         addSubview(index_item)
-        index_item.label.text = "%02d" % (i+1)
         @index_items << index_item
       end
     end
 
-    def when_step_selected(&block)
-      @when_step_selected = block
-    end
-
-    def when_step_unselected(&block)
-      @when_step_unselected = block
-    end
-
     def select(index)
-      @when_step_unselected.call(@index_items[@selected_step]) if @selected_step && @when_step_unselected
+      @index_items[@selected_step].unselect if @selected_step
       @selected_step = index
-      @when_step_selected.call(@index_items[@selected_step]) if @selected_step && @when_step_selected
+      @index_items[@selected_step].select if @selected_step
     end
 
     def setFrame(frame)

@@ -10,28 +10,14 @@ module MotionWizard
 
     def init
       super
-      @steps_controllers = initialize_steps
-      @navigation_bar_view = initialize_navigation_bar_view
-      @content_view = UIView.alloc.init
       @current_step = 0
       @wizard_data = {}
-
-      self.view.addSubview(@content_view)
-      self.view.addSubview(navigation_bar_view)
-      add_new_view
+      @steps_controllers = initialize_steps
       self
     end
 
     def initialize_navigation_bar_view
-      navigation_bar = WizardNavigationBar.alloc.initWitNumberOfSteps(@steps_controllers.size)
-      navigation_bar.when_step_selected do |navigation_item|
-
-      end
-
-      navigation_bar.when_step_unselected do |navigation_item|
-
-      end
-      navigation_bar
+      WizardNavigationBar.alloc.init_with_number_of_steps(@steps_controllers.size, self)
     end
 
     def initialize_steps
@@ -40,27 +26,34 @@ module MotionWizard
 
     def viewDidLoad
       super
+
+      @content_view = UIView.alloc.init
       @content_view.origin = [0,0]
       @content_view.size = self.view.size
+      self.view.addSubview(@content_view)
+
+      @navigation_bar_view = initialize_navigation_bar_view
       @navigation_bar_view.origin = [0,0]
       @navigation_bar_view.size = [self.view.size.width, DEFAULT_NAVIGATION_BAR_HEIGHT]
+      self.view.addSubview(navigation_bar_view)
+
+      add_new_step_view
     end
 
-    def add_new_view(animation_strategy = AnimationStrategy::None)
+    def add_new_step_view(animation_strategy = AnimationStrategy::None)
       @current_view_controller = @steps_controllers[@current_step].alloc.init
       @current_view_controller.wizard_view_controller = self
+      @current_view_controller.view.size = @content_view.size
 
       self.addChildViewController(@current_view_controller)
       @content_view.addSubview(@current_view_controller.view)
-      @current_view_controller.view.size = @content_view.size
-      @current_view_controller.view.restyle!
 
       animation = animation_strategy.new(@current_view_controller.view)
       animation.animate
       navigation_bar_view.select(@current_step)
     end
 
-    def remove_current_view(animation_strategy = AnimationStrategy::None)
+    def remove_current_step_view(animation_strategy = AnimationStrategy::None)
       current_local_view = @current_view_controller
       animation = animation_strategy.new(@current_view_controller.view)
       animation.already_on_final_position = false
@@ -73,27 +66,33 @@ module MotionWizard
     def next(data = {})
       @wizard_data.merge! data
       @current_step+=1
-      change_view(AnimationStrategy::RightToLeft)
+      change_step_view(AnimationStrategy::RightToLeft)
       self
     end
 
     def previous(data = {})
       @wizard_data.merge! data
       @current_step-=1
-      change_view(AnimationStrategy::LeftToRight)
+      change_step_view(AnimationStrategy::LeftToRight)
       self
     end
 
     def go_to_step(step_number, data = {})
       @wizard_data.merge! data
       @current_step = step_number
-      change_view(AnimationStrategy::LeftToRight)
+      change_step_view(AnimationStrategy::LeftToRight)
       self
     end
 
-    def change_view(animation_strategy)
-      remove_current_view(animation_strategy)
-      add_new_view(animation_strategy)
+    def change_step_view(animation_strategy)
+      remove_current_step_view(animation_strategy)
+      add_new_step_view(animation_strategy)
+    end
+
+    def create_index_item_at(index)
+      index_item = IndexItem.alloc.init
+      index_item.label.text = "%02d" % (index+1)
+      index_item
     end
   end
 end
