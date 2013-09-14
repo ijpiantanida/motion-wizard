@@ -41,6 +41,10 @@ module MotionWizard
       add_new_step_view
     end
 
+    def reset!
+      @steps_controllers = []
+    end
+
     def add_new_step_view(animation_strategy = AnimationStrategy::None)
       @current_view_controller = @steps_controllers[@current_step] ||= begin
         new_view_controller = @steps_controllers_classes[@current_step].alloc.init

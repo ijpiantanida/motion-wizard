@@ -26,5 +26,9 @@ module MotionWizard
     def wizard_data
       @wizard_view_controller.wizard_data
     end
+
+    def reset!
+      @wizard_view_controller.reset!
+    end
   end
 end

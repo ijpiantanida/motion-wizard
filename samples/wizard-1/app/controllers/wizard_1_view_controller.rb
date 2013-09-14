@@ -1,8 +1,8 @@
 class Wizard1ViewController < MotionWizard::WizardViewController
   steps Step1ViewController,
         Step2ViewController,
-        Step2ViewController,
-        Step3ViewController
+        Step3ViewController,
+        Step4ViewController
 
   stylesheet :wizard_view_controller
 
