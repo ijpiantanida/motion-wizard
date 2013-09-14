@@ -12,12 +12,13 @@ module MotionWizard
       super
       @current_step = 0
       @wizard_data = {}
-      @steps_controllers = initialize_steps
+      @steps_controllers_classes = initialize_steps
+      @steps_controllers = []
       self
     end
 
     def initialize_navigation_bar_view
-      WizardNavigationBar.alloc.init_with_number_of_steps(@steps_controllers.size, self)
+      WizardNavigationBar.alloc.init_with_number_of_steps(@steps_controllers_classes.size, self)
     end
 
     def initialize_steps
@@ -41,13 +42,18 @@ module MotionWizard
     end
 
     def add_new_step_view(animation_strategy = AnimationStrategy::None)
-      @current_view_controller = @steps_controllers[@current_step].alloc.init
-      @current_view_controller.wizard_view_controller = self
-      @current_view_controller.view.size = @content_view.size
+      @current_view_controller = @steps_controllers[@current_step] ||= begin
+        new_view_controller = @steps_controllers_classes[@current_step].alloc.init
+        new_view_controller.extend(MotionWizard::ContentController)
+        new_view_controller.wizard_view_controller = self
+        new_view_controller.view.size = @content_view.size
+        new_view_controller
+      end
 
       self.addChildViewController(@current_view_controller)
       @content_view.addSubview(@current_view_controller.view)
 
+      @current_view_controller.view.origin = [0,0]
       animation = animation_strategy.new(@current_view_controller.view)
       animation.animate
       navigation_bar_view.select(@current_step)

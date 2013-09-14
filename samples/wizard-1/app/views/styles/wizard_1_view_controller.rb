@@ -4,7 +4,7 @@ Teacup::Stylesheet.new :wizard_view_controller do
 
   style :index_item,
         height: 10,
-        center_y: "60%",
+        center_y: "100%",
         backgroundColor: :orange.uicolor,
         label_wrapper:{
             backgroundColor: :orange.uicolor,

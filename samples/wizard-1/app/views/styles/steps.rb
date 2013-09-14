@@ -9,7 +9,7 @@ Teacup::Stylesheet.new :step_1 do
   style :text_field,
     placeholder: "Put some text here",
     size: ["100% - 40", 30],
-    top: 100,
+    top: 130,
     center_x: "50%",
     textAlignment: NSTextAlignmentCenter,
     contentVerticalAlignment: UIControlContentVerticalAlignmentCenter,
@@ -21,7 +21,7 @@ Teacup::Stylesheet.new :step_1 do
   style :button,
     title: "And click here...",
     size: ["100% - 40", 30],
-    top: 150,
+    top: 180,
     center_x: "50%",
     backgroundColor: :orange.uicolor
 end
@@ -32,7 +32,7 @@ Teacup::Stylesheet.new :step_2 do
   style :label,
         text: "Not much to do here",
         size: ["100% - 40", 30],
-        top: 100,
+        top: 130,
         center_x: "50%",
         textAlignment: NSTextAlignmentCenter,
         textColor: :orange.uicolor
@@ -44,12 +44,12 @@ Teacup::Stylesheet.new :step_2 do
   style :next_button,
         extends: :base_button,
         title: ">",
-        origin: ["50% + 10", 150]
+        origin: ["50% + 10", 180]
 
   style :back_button,
         extends: :base_button,
         title: "<",
-        origin: [20, 150]
+        origin: [20, 180]
 end
 
 Teacup::Stylesheet.new :step_3 do
@@ -58,14 +58,14 @@ Teacup::Stylesheet.new :step_3 do
   style :label,
         text: "End of the journey",
         size: ["100% - 40", 30],
-        top: 100,
+        top: 130,
         center_x: "50%",
         textAlignment: NSTextAlignmentCenter,
         textColor: :orange.uicolor
 
   style :data,
         size: ["100% - 40", 30],
-        top: 150,
+        top: 180,
         center_x: "50%",
         textAlignment: NSTextAlignmentCenter,
         textColor: :orange.uicolor
@@ -75,5 +75,5 @@ Teacup::Stylesheet.new :step_3 do
         center_x: "50%",
         backgroundColor: :orange.uicolor,
         title: "Start over!",
-        top: 200
+        top: 230
 end

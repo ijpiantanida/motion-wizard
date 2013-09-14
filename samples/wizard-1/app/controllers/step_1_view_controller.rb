@@ -1,6 +1,4 @@
 class Step1ViewController < UIViewController
-  include MotionWizard::ContentController
-
   stylesheet :step_1
 
   layout :step do
@@ -13,8 +11,6 @@ class Step1ViewController < UIViewController
 end
 
 class Step2ViewController < UIViewController
-  include MotionWizard::ContentController
-
   stylesheet :step_2
 
   layout :step do
@@ -27,8 +23,6 @@ class Step2ViewController < UIViewController
 end
 
 class Step3ViewController < UIViewController
-  include MotionWizard::ContentController
-
   stylesheet :step_3
 
   layout :step do
