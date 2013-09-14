@@ -40,9 +40,11 @@ class Step4ViewController < UIViewController
     @step_1_data = subview(UILabel, :step_1_data)
     @step_2_data = subview(UILabel, :step_2_data)
     @reset_button = subview(UIButton, :reset_button)
+    @finish_button = subview(UIButton, :finish_button)
     @start_over_button = subview(UIButton, :start_over_button)
     @start_over_button.when(UIControlEventTouchUpInside) {self.go_to_step(0)}
     @reset_button.when(UIControlEventTouchUpInside) {self.reset!}
+    @finish_button.when(UIControlEventTouchUpInside) {self.next}
   end
 
   def viewWillAppear(animated)

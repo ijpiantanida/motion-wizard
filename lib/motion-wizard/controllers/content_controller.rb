@@ -30,5 +30,9 @@ module MotionWizard
     def reset!
       @wizard_view_controller.reset!
     end
+
+    def finish
+      @wizard_view_controller.finish
+    end
   end
 end

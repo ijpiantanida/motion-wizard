@@ -120,4 +120,9 @@ Teacup::Stylesheet.new :step_4 do
         extends: :big_button,
         title: "Start over!",
         top: 360
+
+  style :finish_button,
+        extends: :big_button,
+        title: "Finish",
+        top: 400
 end

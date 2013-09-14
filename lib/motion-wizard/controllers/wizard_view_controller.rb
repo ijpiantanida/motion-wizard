@@ -18,7 +18,7 @@ module MotionWizard
     end
 
     def initialize_navigation_bar_view
-      WizardNavigationBar.alloc.init_with_number_of_steps(@steps_controllers_classes.size, self)
+      WizardNavigationBar.alloc.init_with_number_of_steps(number_of_steps, self)
     end
 
     def initialize_steps
@@ -73,9 +73,17 @@ module MotionWizard
       end
     end
 
+    def number_of_steps
+      @steps_controllers_classes.size
+    end
+
     def next(data = {})
       @wizard_data.merge! data
       @current_step+=1
+      if @current_step >= number_of_steps
+        self.finish
+        return
+      end
       change_step_view(AnimationStrategy::RightToLeft)
       self
     end
@@ -83,6 +91,7 @@ module MotionWizard
     def previous(data = {})
       @wizard_data.merge! data
       @current_step-=1
+      return if @current_step < 0
       change_step_view(AnimationStrategy::LeftToRight)
       self
     end
@@ -92,6 +101,10 @@ module MotionWizard
       @current_step = step_number
       change_step_view(AnimationStrategy::LeftToRight)
       self
+    end
+
+    def finish
+      self.when_finished
     end
 
     def change_step_view(animation_strategy)
@@ -106,5 +119,6 @@ module MotionWizard
     end
 
     def index_item_added_to_view_at(index_item, index);end
+    def when_finished;end
   end
 end

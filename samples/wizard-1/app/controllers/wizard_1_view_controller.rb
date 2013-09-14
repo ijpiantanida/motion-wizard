@@ -8,11 +8,6 @@ class Wizard1ViewController < MotionWizard::WizardViewController
 
   layout :wizard_view_controller
 
-  def viewDidLoad
-    super
-    self.edgesForExtendedLayout = UIRectEdgeNone
-  end
-
   def index_item_added_to_view_at(index_item, index)
     layout(index_item, :index_item)
     index_item.when_selected do
@@ -28,5 +23,9 @@ class Wizard1ViewController < MotionWizard::WizardViewController
                                  })
 
     end
+  end
+
+  def when_finished
+    App.alert("Now you can do whatever you like with this #{@wizard_data}.\nLike changing views...")
   end
 end
