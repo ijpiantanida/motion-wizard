@@ -1,9 +1,10 @@
 module MotionWizard
   module AnimationStrategy
     class None < BaseAnimationStrategy
-      def initialize(view); end
+      def initialize; end
 
-      def animate; end
+      def show_view(view); end
+      def hide_view(view); end
     end
   end
 end

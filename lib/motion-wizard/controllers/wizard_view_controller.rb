@@ -38,14 +38,14 @@ module MotionWizard
       @navigation_bar_view.size = [self.view.size.width, DEFAULT_NAVIGATION_BAR_HEIGHT]
       self.view.addSubview(navigation_bar_view)
 
-      add_new_step_view
+      add_new_step_view(AnimationStrategy::None.new)
     end
 
     def reset!
       @steps_controllers = []
     end
 
-    def add_new_step_view(animation_strategy = AnimationStrategy::None)
+    def add_new_step_view(animation_strategy)
       @current_view_controller = @steps_controllers[@current_step] ||= begin
         new_view_controller = @steps_controllers_classes[@current_step].alloc.init
         new_view_controller.extend(MotionWizard::ContentController)
@@ -58,16 +58,13 @@ module MotionWizard
       @content_view.addSubview(@current_view_controller.view)
 
       @current_view_controller.view.origin = [0,0]
-      animation = animation_strategy.new(@current_view_controller.view)
-      animation.animate
+      animation_strategy.show_view(@current_view_controller.view)
       navigation_bar_view.select(@current_step)
     end
 
-    def remove_current_step_view(animation_strategy = AnimationStrategy::None)
+    def remove_current_step_view(animation_strategy)
       current_local_view = @current_view_controller
-      animation = animation_strategy.new(@current_view_controller.view)
-      animation.already_on_final_position = false
-      animation.animate do |view|
+      animation_strategy.hide_view(@current_view_controller.view) do |view|
         view.removeFromSuperview
         current_local_view.removeFromParentViewController
       end
@@ -107,7 +104,8 @@ module MotionWizard
       self.when_finished
     end
 
-    def change_step_view(animation_strategy)
+    def change_step_view(animation_strategy_klass=AnimationStrategy::None)
+      animation_strategy = animation_strategy_klass.new
       remove_current_step_view(animation_strategy)
       add_new_step_view(animation_strategy)
     end
