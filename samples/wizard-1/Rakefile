@@ -6,6 +6,7 @@ begin
   require 'bundler'
   Bundler.require
   require 'sugarcube-repl'
+  require 'sugarcube-color'
 rescue LoadError
 end
 
