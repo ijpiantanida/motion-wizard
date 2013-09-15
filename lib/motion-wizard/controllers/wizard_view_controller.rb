@@ -16,13 +16,19 @@ module MotionWizard
       @_backward_animation_strategy_class = animation_strategy_class
     end
 
+    def self.index_item_view_class(index_item_view_class)
+      @_index_item_view_class = index_item_view_class
+    end
+
     def init
       super
       @steps_controllers_classes = self.class.instance_variable_get(:@_wizard_steps) || []
       @forward_animation_strategy_class = self.class.instance_variable_get(:@_forward_animation_strategy_class) || AnimationStrategy::RightToLeft
       @backward_animation_strategy_class = self.class.instance_variable_get(:@_backward_animation_strategy_class) || AnimationStrategy::LeftToRight
+      @index_item_view_class = self.class.instance_variable_get(:@_index_item_view_class) || IndexItem
       @current_step = 0
-      self.reset!
+      @wizard_data = {}
+      @steps_controllers = []
       self
     end
 
@@ -45,6 +51,7 @@ module MotionWizard
     def reset!
       @wizard_data = {}
       @steps_controllers = []
+      @navigation_bar_view.reset!
     end
 
     def add_new_step_view(animation_strategy)
@@ -105,7 +112,7 @@ module MotionWizard
       change_step_view(animation_klass)
       self
     end
-
+                                              @index_item_view_class
     def finish
       self.when_finished
     end
@@ -118,7 +125,7 @@ module MotionWizard
     end
 
     def create_index_item_at(index)
-      index_item = IndexItem.alloc.init
+      index_item = @index_item_view_class.alloc.init
       index_item.label.text = "%02d" % (index+1)
       index_item
     end

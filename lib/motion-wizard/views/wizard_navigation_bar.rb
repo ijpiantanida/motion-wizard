@@ -26,6 +26,17 @@ module MotionWizard
       resize_indexes
     end
 
+    def reset!
+      remove_all_index_items
+      create_index_items
+      resize_indexes
+    end
+
+    def remove_all_index_items
+      @index_items.each{|i| i.removeFromSuperview}
+      @index_items.clear
+    end
+
     def resize_indexes
       return unless @number_of_steps
       index_width = (self.frame.size.width).to_f / @number_of_steps
@@ -36,8 +47,6 @@ module MotionWizard
     end
 
     def index_item_resized_at(index_item, i)
-      index_item.label_wrapper.size = index_item.size
-      index_item.label.size = index_item.size
       addSubview(index_item)
       @wizard_controller.index_item_added_to_view_at(index_item, i)
     end

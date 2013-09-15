@@ -17,7 +17,7 @@ Teacup::Stylesheet.new :wizard_view_controller do
         label: {
             backgroundColor: :clear.uicolor,
             textColor: :white.uicolor,
-            height: 20,
+            size: ["100%", 20],
             center: ["50%", "50%"]
         }
 

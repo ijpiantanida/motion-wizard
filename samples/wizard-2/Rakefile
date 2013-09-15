@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/ios'
+
+begin
+  require 'bundler'
+  Bundler.require
+  require 'sugarcube-repl'
+  require 'sugarcube-color'
+  require 'sugarcube-image'
+  require 'sugarcube-uikit'
+  require 'sugarcube-568'
+rescue LoadError
+end
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = 'wizard-2'
+  app.info_plist['UIViewControllerBasedStatusBarAppearance'] = false
+end

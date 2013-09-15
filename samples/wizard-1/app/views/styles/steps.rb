@@ -34,7 +34,7 @@ Teacup::Stylesheet.new :step_2 do
   import :steps
 
   style :text_field,
-        placeholder: "Also add some text here",
+        placeholder: "Also add some tap here",
         size: ["100% - 40", 30],
         top: 130,
         center_x: "50%",
