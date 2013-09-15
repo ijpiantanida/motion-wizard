@@ -23,7 +23,9 @@ class Wizard1ViewController < MotionWizard::WizardViewController
       UIView.animateWithDuration(0.5,
                                  animations: -> {
                                    layout(index_item, :index_item)
-                                 })
+                                 }, completion: ->(_){
+                                    layout(index_item, :index_item_unselected)
+          })
 
     end
   end

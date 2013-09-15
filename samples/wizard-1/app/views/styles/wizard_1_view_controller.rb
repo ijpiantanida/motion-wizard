@@ -11,7 +11,6 @@ Teacup::Stylesheet.new :wizard_view_controller do
             size: [50, 50],
             center: ["50%", "50%"],
             layer: {
-                borderWidth: 0,
                 cornerRadius: 25
             }
         },
@@ -20,6 +19,12 @@ Teacup::Stylesheet.new :wizard_view_controller do
             textColor: :white.uicolor,
             height: 20,
             center: ["50%", "50%"]
+        }
+
+  style :index_item_unseleted,
+        extends: :index_item,
+        layer: {
+            borderWidth: 0
         }
 
   style :index_item_selected,
