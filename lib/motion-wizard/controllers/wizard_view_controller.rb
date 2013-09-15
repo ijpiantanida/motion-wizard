@@ -52,6 +52,7 @@ module MotionWizard
       @wizard_data = {}
       @steps_controllers = []
       @navigation_bar_view.reset!
+      navigation_bar_view.select(@current_step)
     end
 
     def add_new_step_view(animation_strategy)
