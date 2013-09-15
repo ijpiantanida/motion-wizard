@@ -8,21 +8,27 @@ module MotionWizard
       @_wizard_steps = steps
     end
 
+    def self.forward_animation_strategy(animation_strategy_class)
+      @_forward_animation_strategy_class = animation_strategy_class
+    end
+
+    def self.backward_animation_strategy(animation_strategy_class)
+      @_backward_animation_strategy_class = animation_strategy_class
+    end
+
     def init
       super
       @current_step = 0
       @wizard_data = {}
-      @steps_controllers_classes = initialize_steps
+      @steps_controllers_classes = self.class.instance_variable_get(:@_wizard_steps) || []
+      @forward_animation_strategy_class = self.class.instance_variable_get(:@_forward_animation_strategy_class) || AnimationStrategy::RightToLeft
+      @backward_animation_strategy_class = self.class.instance_variable_get(:@_backward_animation_strategy_class) || AnimationStrategy::LeftToRight
       @steps_controllers = []
       self
     end
 
     def initialize_navigation_bar_view
       WizardNavigationBar.alloc.init_with_number_of_steps(number_of_steps, self)
-    end
-
-    def initialize_steps
-      self.class.instance_variable_get(:@_wizard_steps) || []
     end
 
     def viewDidLoad
@@ -81,7 +87,7 @@ module MotionWizard
         self.finish
         return
       end
-      change_step_view(AnimationStrategy::Ios7SlideRightToLeft)
+      change_step_view(@forward_animation_strategy_class)
       self
     end
 
@@ -89,13 +95,13 @@ module MotionWizard
       @wizard_data.merge! data
       @current_step-=1
       return if @current_step < 0
-      change_step_view(AnimationStrategy::Ios7SlideLeftToRight)
+      change_step_view(@backward_animation_strategy_class)
       self
     end
 
     def go_to_step(step_number, data = {})
       @wizard_data.merge! data
-      animation_klass = @current_step > step_number ? AnimationStrategy::Ios7SlideLeftToRight : AnimationStrategy::Ios7SlideRightToLeft
+      animation_klass = @current_step > step_number ? @backward_animation_strategy_class : @forward_animation_strategy_class
       @current_step = step_number
       change_step_view(animation_klass)
       self
@@ -105,7 +111,7 @@ module MotionWizard
       self.when_finished
     end
 
-    def change_step_view(animation_strategy_klass=AnimationStrategy::None)
+    def change_step_view(animation_strategy_klass)
       animation_strategy = animation_strategy_klass.new
       remove_current_step_view(animation_strategy)
       add_new_step_view(animation_strategy)
