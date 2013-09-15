@@ -5,7 +5,7 @@ Teacup::Stylesheet.new :steps do
   style :big_button,
         size: ["100% - 40", 30],
         center_x: "50%",
-        backgroundColor: :orange.uicolor
+        backgroundColor: [103,189,71].uicolor
 
 end
 
@@ -26,7 +26,7 @@ Teacup::Stylesheet.new :step_1 do
 
   style :button,
     extends: :big_button,
-    title: "And click here...",
+    title: "And tap here...",
     top: 180
 end
 
@@ -34,7 +34,7 @@ Teacup::Stylesheet.new :step_2 do
   import :steps
 
   style :text_field,
-        placeholder: "Also add some tap here",
+        placeholder: "Also add some text here",
         size: ["100% - 40", 30],
         top: 130,
         center_x: "50%",
@@ -47,7 +47,7 @@ Teacup::Stylesheet.new :step_2 do
 
   style :base_button,
         size: ["50% - 40", 30],
-        backgroundColor: :orange.uicolor
+        backgroundColor: [103,189,71].uicolor
 
   style :next_button,
         extends: :base_button,
@@ -69,11 +69,11 @@ Teacup::Stylesheet.new :step_3 do
         top: 130,
         center_x: "50%",
         textAlignment: NSTextAlignmentCenter,
-        textColor: :orange.uicolor
+        textColor: [103,189,71].uicolor
 
   style :base_button,
         size: ["50% - 40", 30],
-        backgroundColor: :orange.uicolor
+        backgroundColor: [103,189,71].uicolor
 
   style :next_button,
         extends: :base_button,
@@ -95,13 +95,13 @@ Teacup::Stylesheet.new :step_4 do
         top: 130,
         center_x: "50%",
         textAlignment: NSTextAlignmentCenter,
-        textColor: :orange.uicolor
+        textColor: [103,189,71].uicolor
 
   style :data,
         size: ["100% - 40", 30],
         center_x: "50%",
         textAlignment: NSTextAlignmentCenter,
-        textColor: :orange.uicolor
+        textColor: [103,189,71].uicolor
 
   style :step_1_data,
         extends: :data,

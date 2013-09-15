@@ -4,9 +4,6 @@ class Wizard1ViewController < MotionWizard::WizardViewController
         Step3ViewController,
         Step4ViewController
 
-  forward_animation_strategy MotionWizard::AnimationStrategy::Ios7SlideRightToLeft
-  backward_animation_strategy MotionWizard::AnimationStrategy::Ios7SlideLeftToRight
-
   stylesheet :wizard_view_controller
 
   layout :wizard_view_controller

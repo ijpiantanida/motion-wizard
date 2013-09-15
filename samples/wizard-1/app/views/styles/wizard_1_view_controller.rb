@@ -5,9 +5,9 @@ Teacup::Stylesheet.new :wizard_view_controller do
   style :index_item,
         height: 10,
         center_y: "100%",
-        backgroundColor: :orange.uicolor,
+        backgroundColor: [103,189,71].uicolor,
         label_wrapper:{
-            backgroundColor: :orange.uicolor,
+            backgroundColor: [103,189,71].uicolor,
             size: [50, 50],
             center: ["50%", "50%"],
             layer: {
@@ -32,11 +32,11 @@ Teacup::Stylesheet.new :wizard_view_controller do
             backgroundColor: :white.uicolor,
             layer: {
                 borderWidth: 2,
-                borderColor: :orange.uicolor.CGColor
+                borderColor: [103,189,71].uicolor.CGColor
             }
         },
         label: {
-            textColor: :orange.uicolor
+            textColor: [103,189,71].uicolor
         }
 
 end
