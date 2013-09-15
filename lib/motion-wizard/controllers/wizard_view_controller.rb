@@ -113,7 +113,7 @@ module MotionWizard
       change_step_view(animation_klass)
       self
     end
-                                              @index_item_view_class
+
     def finish
       self.when_finished
     end
