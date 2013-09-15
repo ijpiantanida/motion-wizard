@@ -18,12 +18,11 @@ module MotionWizard
 
     def init
       super
-      @current_step = 0
-      @wizard_data = {}
       @steps_controllers_classes = self.class.instance_variable_get(:@_wizard_steps) || []
       @forward_animation_strategy_class = self.class.instance_variable_get(:@_forward_animation_strategy_class) || AnimationStrategy::RightToLeft
       @backward_animation_strategy_class = self.class.instance_variable_get(:@_backward_animation_strategy_class) || AnimationStrategy::LeftToRight
-      @steps_controllers = []
+      @current_step = 0
+      self.reset!
       self
     end
 
@@ -48,6 +47,7 @@ module MotionWizard
     end
 
     def reset!
+      @wizard_data = {}
       @steps_controllers = []
     end
 
