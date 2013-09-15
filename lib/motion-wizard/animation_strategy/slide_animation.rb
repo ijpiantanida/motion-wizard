@@ -3,12 +3,9 @@ module MotionWizard
     class SlideAnimation < BaseAnimationStrategy
       attr_accessor :direction
 
-      def show_view(view, &after_block)
-        do_slide_animation(view, @direction*App.frame.size.width, 0, after_block)
-      end
-
-      def hide_view(view, &after_block)
-        do_slide_animation(view, 0, -@direction*App.frame.size.width, after_block)
+      def animate
+        do_slide_animation(@show_view, @direction*App.frame.size.width, 0, @show_view_after_block)
+        do_slide_animation(@hide_view, 0, -@direction*App.frame.size.width, @hide_view_after_block)
       end
 
       def do_slide_animation(view, initial_position, final_position, after_block)

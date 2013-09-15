@@ -5,6 +5,7 @@ module MotionWizard
 
       def show_view(view); end
       def hide_view(view); end
+      def animate; end
     end
   end
 end

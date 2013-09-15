@@ -1,6 +1,6 @@
 Teacup::Stylesheet.new :steps do
   style :step,
-        backgroundColor: :clear.uicolor
+        backgroundColor: :white.uicolor
 
   style :big_button,
         size: ["100% - 40", 30],

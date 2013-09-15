@@ -81,7 +81,7 @@ module MotionWizard
         self.finish
         return
       end
-      change_step_view(AnimationStrategy::RightToLeft)
+      change_step_view(AnimationStrategy::Ios7SlideRightToLeft)
       self
     end
 
@@ -89,14 +89,15 @@ module MotionWizard
       @wizard_data.merge! data
       @current_step-=1
       return if @current_step < 0
-      change_step_view(AnimationStrategy::LeftToRight)
+      change_step_view(AnimationStrategy::Ios7SlideLeftToRight)
       self
     end
 
     def go_to_step(step_number, data = {})
       @wizard_data.merge! data
+      animation_klass = @current_step > step_number ? AnimationStrategy::Ios7SlideLeftToRight : AnimationStrategy::Ios7SlideRightToLeft
       @current_step = step_number
-      change_step_view(AnimationStrategy::LeftToRight)
+      change_step_view(animation_klass)
       self
     end
 
@@ -108,6 +109,7 @@ module MotionWizard
       animation_strategy = animation_strategy_klass.new
       remove_current_step_view(animation_strategy)
       add_new_step_view(animation_strategy)
+      animation_strategy.animate
     end
 
     def create_index_item_at(index)
