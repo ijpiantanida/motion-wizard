@@ -8,7 +8,7 @@ class Wizard1ViewController < MotionWizard::WizardViewController
 
   layout :wizard_view_controller
 
-  def index_item_added_to_view_at(index_item, index)
+  def index_item_resized_at(index_item, index)
     layout(index_item, :index_item)
     index_item.when_selected do
       UIView.animateWithDuration(0.5,

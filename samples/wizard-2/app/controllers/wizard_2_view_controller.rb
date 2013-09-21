@@ -10,7 +10,7 @@ class Wizard2ViewController< MotionWizard::WizardViewController
   stylesheet :wizard_view_controller
   layout :wizard_view_controller
 
-  def index_item_added_to_view_at(index_item, index)
+  def index_item_resized_at(index_item, index)
     index_item.label.text = case index
                               when 0..2
                                 "I"*(index + 1)

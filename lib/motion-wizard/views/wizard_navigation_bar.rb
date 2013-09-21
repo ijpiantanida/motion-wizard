@@ -11,7 +11,9 @@ module MotionWizard
 
     def create_index_items
       @number_of_steps.times do |i|
-        @index_items << @wizard_controller.create_index_item_at(i)
+        index_item = @wizard_controller.create_index_item_at(i)
+        @index_items << index_item
+        addSubview(index_item)
       end
     end
 
@@ -47,8 +49,7 @@ module MotionWizard
     end
 
     def index_item_resized_at(index_item, i)
-      addSubview(index_item)
-      @wizard_controller.index_item_added_to_view_at(index_item, i)
+      @wizard_controller.index_item_resized_at(index_item, i)
     end
   end
 end

@@ -131,7 +131,7 @@ module MotionWizard
       index_item
     end
 
-    def index_item_added_to_view_at(index_item, index);end
+    def index_item_resized_at(index_item, index);end
     def when_finished;end
   end
 end
