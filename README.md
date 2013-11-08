@@ -6,6 +6,13 @@ A small gem to create clean wizard-like views
 ![Sample 2](https://raw.github.com/ijpiantanida/motion-wizard/master/wizard-2.gif)
 
 #Installation
+```
+gem install motion-wizard
+
+# or in Gemfile
+gem 'motion-wizard'
+```
+
 #How to use it
 Your custom wizard view controller will inherit from `MotionWizard::WizardViewController`.
 

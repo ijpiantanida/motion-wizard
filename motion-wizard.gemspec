@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.version       = "0.1"
   spec.authors       = ["Ignacio Piantanida"]
   spec.email         = ["ijpiantanida@gmail.com"]
-  spec.description   = "An small library to create wizard like views"
+  spec.description   = "An small library to create wizard like views controllers"
   spec.summary       = "An small library to create wizard like views"
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/ijpiantanida/motion-wizard"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
