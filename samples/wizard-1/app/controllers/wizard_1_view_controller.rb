@@ -8,7 +8,7 @@ class Wizard1ViewController < MotionWizard::WizardViewController
 
   layout :wizard_view_controller
 
-  def index_item_resized_at(index_item, index)
+  def setup_index_item_at(index_item, index)
     layout(index_item, :index_item)
     index_item.when_selected{ index_item.animate_to_stylename(:index_item_selected) }
     index_item.when_unselected do

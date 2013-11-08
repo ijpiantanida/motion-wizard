@@ -44,12 +44,12 @@ module MotionWizard
       index_width = (self.frame.size.width).to_f / @number_of_steps
       @index_items.each_with_index do |index_item, i|
         index_item.frame = [[index_width*i, 0], [index_width, self.size.height]]
-        index_item_resized_at(index_item, i)
+        setup_index_item_at(index_item, i)
       end
     end
 
-    def index_item_resized_at(index_item, i)
-      @wizard_controller.index_item_resized_at(index_item, i)
+    def setup_index_item_at(index_item, i)
+      @wizard_controller.setup_index_item_at(index_item, i)
     end
   end
 end
