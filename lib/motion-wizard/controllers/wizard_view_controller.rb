@@ -91,6 +91,7 @@ module MotionWizard
       @wizard_data.merge! data
       @current_step+=1
       if @current_step >= number_of_steps
+        @current_step = number_of_steps - 1
         self.finish
         return
       end
@@ -114,7 +115,8 @@ module MotionWizard
       self
     end
 
-    def finish
+    def finish(data = {})
+      @wizard_data.merge! data
       self.when_finished
     end
 
@@ -131,7 +133,11 @@ module MotionWizard
       index_item
     end
 
-    def index_item_resized_at(index_item, index);end
+    def index_item_resized_at(index_item, index)
+      index_item.label_wrapper.size = index_item.size
+      index_item.label.size = index_item.size
+    end
+
     def when_finished;end
   end
 end

@@ -18,9 +18,9 @@ module MotionWizard
     end
 
     def select(index)
-      @index_items[@selected_step].unselect if @selected_step
+      @index_items[@selected_step].unselect if @selected_step && @index_items[@selected_step].respond_to?(:unselect)
       @selected_step = index
-      @index_items[@selected_step].select if @selected_step
+      @index_items[@selected_step].select if @selected_step && @index_items[@selected_step].respond_to?(:select)
     end
 
     def setFrame(frame)
