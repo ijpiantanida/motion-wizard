@@ -3,7 +3,16 @@ class Step1ViewController < UIViewController
 
   layout :step do
     @button = subview(UIButton, :button)
-    @button.when(UIControlEventTouchUpInside){ self.next }
+  end
+  
+  def viewWillAppear(animated)
+    super
+    @button.on(:touch){ self.next }
+  end
+
+  def viewWillDisappear(animated)
+    super
+    @button.off(:touch)
   end
 end
 
@@ -13,8 +22,18 @@ class Step2ViewController < UIViewController
   layout :step do
     @next_button = subview(UIButton, :next_button)
     @back_button = subview(UIButton, :back_button)
-    @next_button.when(UIControlEventTouchUpInside) {self.next}
-    @back_button.when(UIControlEventTouchUpInside) {self.previous}
+  end
+
+  def viewWillAppear(animated)
+    super
+    @next_button.on(:touch) {self.next}
+    @back_button.on(:touch) {self.previous}
+  end
+
+  def viewWillDisappear(animated)
+    super
+    @next_button.off(:touch)
+    @back_button.off(:touch)
   end
 end
 
@@ -24,7 +43,17 @@ class Step3ViewController < UIViewController
   layout :step do
     @next_button = subview(UIButton, :next_button)
     @back_button = subview(UIButton, :back_button)
-    @next_button.when(UIControlEventTouchUpInside) {self.finish}
-    @back_button.when(UIControlEventTouchUpInside) {self.previous}
+  end
+
+  def viewWillAppear(animated)
+    super
+    @next_button.on(:touch) {self.finish}
+    @back_button.on(:touch) {self.previous}
+  end
+
+  def viewWillDisappear(animated)
+    super
+    @next_button.off(:touch)
+    @back_button.off(:touch)
   end
 end

@@ -10,6 +10,8 @@ begin
   require 'sugarcube-image'
   require 'sugarcube-uikit'
   require 'sugarcube-568'
+  require 'sugarcube-events'
+  require 'sugarcube-constants'
 rescue LoadError
 end
 
