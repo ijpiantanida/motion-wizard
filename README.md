@@ -5,7 +5,7 @@ A small gem to create clean wizard-like views
 ![Sample 1](https://raw.github.com/ijpiantanida/motion-wizard/master/wizard-1.gif)
 ![Sample 2](https://raw.github.com/ijpiantanida/motion-wizard/master/wizard-2.gif)
 
-#Installation
+## Installation
 ```
 gem install motion-wizard
 
@@ -13,7 +13,7 @@ gem install motion-wizard
 gem 'motion-wizard'
 ```
 
-#How to use it
+## How to use it
 Your custom wizard view controller will inherit from `MotionWizard::WizardViewController`.
 
 With the `steps` class method, you specify which view controllers will describe your wizard.
@@ -26,7 +26,7 @@ class Wizard1ViewController < MotionWizard::WizardViewController
         Step4ViewController
 end
 ```
-##Moving through steps
+### Moving through steps
 The `WizardViewController` will create instances of your steps controllers which will then be extended with the `MotionWizard::ContentController` module. This module gives you the following methods which can be used inside your steps:
 * **#next(data)**: Will move to the next step. It will call `#finish` if there is no following step.
 * **#previous(data)**: Will move to the previous step. If already on the first step, this method will do nothing.
@@ -58,7 +58,7 @@ class Wizard1ViewController < MotionWizard::WizardViewController
 end
 ```
 
-##Customizing Index Views
+### Customizing Index Views
 By default, index views will be instances of `MotionWizard::IndexItem`. This view has a `label_wrapper` (`UIView`) subview, which has a `label` (`UILabel`) subview.
 
 It also defines two methods `when_selected` and `when_unselected` that allow to subscribe a block to be called whenever the current step changes.
