@@ -1,3 +1,6 @@
+**UNMAINTAINED PROJECT**
+**I stopped developing in RubyMotion long time ago and can no longer maintain the project.**
+
 # Motion-Wizard
 
 A small gem to create clean wizard-like views
